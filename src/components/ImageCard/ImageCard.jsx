@@ -1,9 +1,13 @@
 import React from "react";
 
-const ImageCard = () => {
+const ImageCard = ({ image, onClick }) => {
   return (
     <div>
-      <img src={data.urls.small} alt={data.slug} />
+      <img
+        onClick={() => onClick(image.urls.regular)}
+        src={image.urls.small}
+        alt={image.alt_description}
+      />
     </div>
   );
 };

@@ -1,23 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-const notify = () => toast("Here is your toast.");
-const SearchBar = ({ submit, onSubmit }) => {
+
+const SearchBar = ({ onSubmit }) => {
+  const [input, setInput] = useState("");
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (input.trim() === "") {
+      toast.error("Please enter a search term.");
+      return;
+    }
+    onSubmit(input);
+  };
   return (
     <header>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          autoComplete="off"
-          autoFocus
+          value={input}
+          onChange={handleChange}
           placeholder="Search images and photos"
         />
-        <button
-          type="submit"
-          onClick={(e) => onSubmit(e.target.value)}
-          value={submit}
-        >
-          Search
-        </button>
+        <button type="submit">Search</button>
       </form>
     </header>
   );
