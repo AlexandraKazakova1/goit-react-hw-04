@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
-import ReactModal from "react-modal";
+import React from "react";
+import s from "./ImageModal.module.css";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 
-const ImageModal = ({ imageUrl, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-
+const ImageModal = ({ imageUrl, onClose, isOpen }) => {
   return (
-    <ReactModal
-      isOpen
+    <Modal
+      isOpen={isOpen}
       onRequestClose={onClose}
-      overlayClassName={styles.Overlay}
+      overlayClassName={s.overlay}
+      className={s.content}
+      shouldCloseOnOverlayClick={true}
+      shouldCloseOnEsc={true}
     >
-      <img src={imageUrl} alt="Large view" />
-    </ReactModal>
+      <img src={imageUrl} alt="Large view" className={s.img} />
+    </Modal>
   );
 };
 

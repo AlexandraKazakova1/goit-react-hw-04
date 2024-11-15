@@ -7,6 +7,10 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { Toaster } from "react-hot-toast";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -61,6 +65,7 @@ const App = () => {
 
   return (
     <div>
+      <Toaster />
       <SearchBar onSubmit={searchSubmit} />
       {error && <ErrorMessage message={error} />}
       <ImageGallery images={images} onImageClick={handleImageClick} />
@@ -68,9 +73,15 @@ const App = () => {
       {page < totalPages && !isLoading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-      {showModal && <ImageModal imageUrl={largeImage} onClose={closeModal} />}
+
+      <ImageModal
+        imageUrl={largeImage}
+        onClose={closeModal}
+        isOpen={showModal}
+      />
     </div>
   );
 };
 
 export default App;
+// onClose={closeModal}

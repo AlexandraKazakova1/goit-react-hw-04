@@ -1,9 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "https://api.unsplash.com/";
-
 export const fetchArticles = async (query, page) => {
-  const response = await axios.get("https://api.unsplash.com/photos", {
+  const response = await axios.get("https://api.unsplash.com/search/photos", {
     params: {
       query,
       page,
@@ -14,5 +12,5 @@ export const fetchArticles = async (query, page) => {
     },
   });
 
-  return response.data.results;
+  return response.data;
 };
