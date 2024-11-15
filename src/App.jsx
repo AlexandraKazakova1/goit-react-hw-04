@@ -26,6 +26,7 @@ const App = () => {
       try {
         const { results, total_pages } = await fetchArticles(query, page);
         setImages((prevImages) => [...prevImages, ...results]);
+
         setTotalPages(total_pages);
       } catch (error) {
         setError("Error fetching images.");
