@@ -8,9 +8,6 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import { Toaster } from "react-hot-toast";
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -84,4 +81,3 @@ const App = () => {
 };
 
 export default App;
-// onClose={closeModal}
